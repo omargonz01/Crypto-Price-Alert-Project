@@ -1,0 +1,33 @@
+{% extends 'base.html'%}
+
+{% block title %}
+🔔 All Alerts 🔔
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="../static/styles/alerts.css">
+{% endblock %}
+
+{% block content %}
+{% include './includes/nav.html'%}
+<div class="container">
+    <h1 class="mx-auto">All Alerts</h1>
+    <div class="row">
+        {% for alert in alerts %}
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Send alert when {{ alert.crypto_name.title() }} price is:</h5>
+                    <p class="card-text">{{ alert.direction.title() }}</p>
+                    <p class="card-text">${{ alert.price }}</p>
+                    <p class="card-text">
+                        <!-- Display the combined date and time -->
+                        Created on: {{ alert.date_created_str }} @ {{ alert.time_created_str }} PT
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

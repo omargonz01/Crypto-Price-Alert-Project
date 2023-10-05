@@ -1,0 +1,70 @@
+.navbar {
+    background-color: #1f1f1f;
+    padding: 0 50px;
+    position: relative;
+    width: 100%;
+    box-shadow: rgb(217, 227, 237) 0px 20px 30px -10px;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #1f1f1f;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.navbar::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 100%;
+    background-color: #8aa3a5;
+    visibility: hidden;
+}
+
+.navbar img {
+    height: 50px;
+    width: auto;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.navbar ul li a {
+    color: #fff;
+    text-decoration: none;
+    position: relative;
+}
+
+.navbar ul li a:hover {
+    color: #8aa3a5;
+}
+
+.navbar ul li a:hover::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    height: 2px;
+    width: 100%;
+    background-color: #8aa3a5;
+}
+
+.navbar ul li a:hover ~ .navbar::after {
+    visibility: visible;
+}
+
+
+.nav-item.dropdown:focus-within .dropdown-menu {
+    display: block;
+}
+.logoutModalLabel {
+    color:#1f1f1f;
+}

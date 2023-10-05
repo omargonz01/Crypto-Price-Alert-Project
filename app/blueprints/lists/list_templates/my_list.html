@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+
+{% block styles %} 
+    <link rel="stylesheet" href="../static/styles/mylist.css">
+{% endblock %}
+
+{% block title %}
+📑 My List 📑
+{% endblock %}
+
+{% block content %}
+
+{% include './includes/nav.html' %}
+
+<div class="background">
+  <h1 class="w-50 text-center mx-auto"><u>🔍 My List 🔎</u></h1>
+  <table class="table table-dark table-hover w-75 mx-auto">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col"><u>Crypto Name</u></th>
+        <th scope="col"><u>Symbol</u></th>
+        <th scope="col"><u>Current Price</u></th>
+        <th scope="col">ATH</th>
+        <th scope="col">Market Cap</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for crypto in cryptos %}
+
+      <tr>
+        <td>{{ loop.index }}</td>
+        <td>{{ crypto.name }}</td>
+        <td>{{ crypto.symbol }}</td>
+        <td>${{ crypto.current_price }}</td>
+        <td>${{ crypto.all_time_high_price }}</td>
+        <td>${{ crypto.market_cap }}</td>
+        <td>
+          <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
+            data-bs-target="#notesModal{{ crypto.id }}">
+            Notes
+          </button>
+          <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+            data-bs-target="#removeConfirmationModal{{ crypto.id }}">
+            Remove
+          </button>
+        </td>
+      </tr>
+
+      {% endfor %}
+
+    </tbody>
+  </table>
+</div>
+
+<!-- Notes Modals -->
+{% for crypto in cryptos %}
+
+<div class="modal fade" id="notesModal{{ crypto.id }}" tabindex="-1" role="dialog"
+  aria-labelledby="notesModalLabel{{ crypto.id }}" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="notesModalLabel{{ crypto.id }}">{{ crypto.name.title() }} Notes</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <textarea id="cryptoNotes{{ crypto.id }}" class="form-control" rows="5"
+          placeholder="Add your notes here 📝">{{ get_crypto_notes(crypto.id) }}</textarea>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="saveNotes({{ crypto.id }})">Save Notes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endfor %}
+
+<!-- Remove Confirm Modal -->
+
+{% for crypto in cryptos %}
+
+<div class="modal fade" id="removeConfirmationModal{{ crypto.id }}" tabindex="-1" role="dialog"
+  aria-labelledby="removeConfirmationModalLabel{{ crypto.id }}" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="removeConfirmationModalLabel{{ crypto.id }}">Remove {{ crypto.name }} from your
+          list?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        Do you really want to do this? This crypto is on your list for a reason...
+        Could be the next big thing, proceed at your own peril.
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <form method="POST" action="{{ url_for('lists.remove_from_list', crypto_id=crypto.id) }}">
+          <button type="submit" class="btn btn-danger">Confirm Remove</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endfor %}
+
+<script>
+  function saveNotes(cryptoId) {
+    const notesTextarea = document.getElementById(`cryptoNotes${cryptoId}`);
+    const notes = notesTextarea.value;
+
+    // Send an AJAX request to update the notes for this crypto
+    fetch(`/lists/update_crypto_notes/${cryptoId}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ notes }),
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.message === 'Notes updated successfully') {
+          // Close the modal after saving
+          $(`#notesModal${cryptoId}`).modal('hide');
+        } else {
+          // Handle any errors
+          console.error('Error:', data.error);
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  }
+</script>
+
+{% endblock %}

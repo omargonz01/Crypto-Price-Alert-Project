@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block styles %} 
+    <link rel="stylesheet" href="../static/styles/set_alerts.css">
+{% endblock %}
+
+{% block title %} 
+🔔 Set New Alert 🔔
+{% endblock %}
+
+{% block content %}
+{% include './includes/nav.html' %}
+
+<div class="container">
+    <img src="../static/images/degen_zone-transformed.png" height="200px" width="auto" alt="degen zone logo">
+    <h2>Create a New Alert</h2>
+    <h5><em>Trade smarter with Degen Zone.</em></h5>
+<form method="POST" class="w-50 mx-auto">
+    {{ form.hidden_tag() }}
+    <div class="mb-3">
+        {{ form.coin_name(class='form-control',placeholder='Enter Coin Name')}}
+    </div>
+    <div class="mb-3">
+        {{ form.currency(class='form-control',placeholder='Enter Currency')}}
+    </div>
+    <div class="mb-3">
+        {{ form.price(class='form-control',placeholder='Price Target')}}
+    </div>
+    <div id="emailHelp" class="form-text">Select Your Preferences (づ￣ 3￣)づ</div>
+    <div class="mb-3">
+        {{ form.direction(class='form-control',placeholder='Direction')}}
+    </div>
+    <div class="mb-3">
+        {{ form.channel(class='form-control',placeholder='Select Channel')}}
+    </div>
+    <div class="mb-3">
+        {{ form.exchange(class='form-control',placeholder='Select Exchange')}}
+    </div>
+    {{ form.submit(class='btn d-block mx-auto mt-5') }}
+</form>
+</div>
+{% endblock %}
+
+<!-- <form method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.coin_name.label }} {{ form.coin_name() }}
+    {{ form.currency.label }} {{ form.currency() }}
+    {{ form.price.label }} {{ form.price() }}
+    {{ form.direction.label }} {{ form.direction() }}
+    {{ form.channel.label }} {{ form.channel() }}
+    {{ form.exchange.label }} {{ form.exchange() }}
+    {{ form.submit() }}
+</form> -->

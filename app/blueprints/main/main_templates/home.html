@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block styles %} 
+    <link rel="stylesheet" href="../static/styles/home.css">
+{% endblock %}
+
+{% block title %} 
+  👨🏽‍💻 Degen Zone 👨🏽‍💻
+{% endblock %}
+
+{% block content %}
+{% include './includes/nav.html' %}
+<div class="main-section">
+  <div class="container">
+    <div class="top-img1">
+      <img src="../static/images/trasnparent2.png">
+    </div>
+      <div class="row">
+          <div class="col-lg-6">
+            <img src="../static/images/homepgpic.png" class="img-fluid rounded" alt="...">
+          </div>
+          <div class="ptags col-lg-6">
+              
+              <p>Degen Zone is the ultimate place for crypto enthusiasts to see how much 
+                they stand to potentially gain from their favorite coins. Degen Zone allows 
+                you to search any cryptocurrency and get instant information about its all-time 
+                high price, current price, and potential gain percentage. You can <u><em>add them to your list</em></u>,
+                <u><em>take notes</em></u>, & keep track of updates or moves, everytime you log in.<em>*nice*</em></p>
+          </div>
+      </div>
+      <div class="empty-space"></div>
+      <div class="row">
+          <div class="ptags col-lg-6">
+              
+              <p>But that’s not all! Degen Zone also allows you to <u><em>browse by category</em></u> & <u><em>create custom alerts</em></u> that 
+                send you an email or text message when that alert is 
+                 triggered. You can set your own criteria for the alerts, such as specific price changes,
+                  volume changes, or market cap changes.</p>
+          </div>
+          <div class="col-lg-6">
+              
+              <img src="../static/images/finallittledit.jpg" class="img-fluid rounded" alt="...">
+          </div>
+      </div>
+      <div class="empty-space"></div>
+      <div class="row">
+        <div class="col-lg-6">
+          
+          <img src="../static/images/fotor_edit.jpg" class="img-fluid rounded" alt="...">
+      </div>
+          <div class="ptags col-lg-6">
+              
+              <p>Degen Zone is not a financial advisor, rather a place to <u><em>take notes</em></u> & <u><em>keep an eye</em></u> on your favorite cryptos.
+                It's a fun, informative tool that's meant to help  
+                you better explore the crypto market and its possibilities. Whether you are a seasoned 
+                trader or just starting in your mom's basement, Degen Zone is the place for you. 
+                Try it out today and see how much you can degen! DYOR.</p>
+                <button class="btn btn-sm d-block mx-auto" onclick="location.href='{{ url_for('main.search') }}'">Let's Go</button>
+          </div>
+          
+      </div>
+  </div>
+</div>
+<!-- <div class="background">
+    <figure class="figure figure-flex mx-auto">
+        <img src="../static/images/dgz-fotor-2023092714358.png" class="figure-img img-fluid rounded" alt="...">
+        <figcaption class="figure-caption"> 
+          <img src="../static/images/trasnparent2.png">
+            <br>
+            <p>Degen Zone is the ultimate place for crypto enthusiasts who want to know how much 
+              they can stand to gain from their favorite coins. Degen Zone allows 
+              you to search any cryptocurrency and get instant information about its all-time 
+              high price, current price, and potential gain percentage. You can also see
+               how much you stand to gain if the coin reaches 50% of its all-time high
+               price because why not. </p>
+            <br>
+            <br>
+            <p>But that’s not all! Degen Zone also allows you to create custom alerts that 
+              send you an email or text message when that alert is 
+               triggered. You can set your own criteria for the alerts, such as price changes,
+                volume changes, or market cap changes. You know, so you can buy low & sell high.</p>
+            <br>
+            <br>
+            <p>Degen Zone is not a financial advisor, but a fun and informative tool that helps 
+              you explore the crypto market and its possibilities. Whether you are a seasoned 
+              trader or just starting in your mom's basement, Degen Zone is the place for you. 
+              Try it out today and see how much you can degen! DYOR.</p>
+            <br>
+            <button class="btn btn-sm d-block mx-auto" onclick="location.href='{{ url_for('main.search') }}'">Let's Go</button>
+            <br></figcaption>
+      </figure>
+</div> -->
+{% endblock %}

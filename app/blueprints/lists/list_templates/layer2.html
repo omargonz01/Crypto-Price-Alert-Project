@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block styles %} 
+    <link rel="stylesheet" href="../static/styles/lists.css">
+{% endblock %}
+
+{% block title %} 
+💻 Layer 2 (L2s) 💻
+{% endblock %}
+
+{% block content %}
+
+{% include './includes/nav.html' %}
+
+
+<div class="background">
+    <h1 class="w-50 text-center mx-auto"><u>💻 Layer 2 (L2s) 💻</u></h1>
+    <table class="table table-dark table-hover w-75 mx-auto">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Crypto Name</th>
+                <th scope="col">Symbol</th>
+                <th scope="col">Current Price</th>
+                <th scope="col">ATH</th>
+                <th scope="col">Market Cap</th>
+                <th scope="col">Add to List</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for coin in coins %}
+
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ coin.name }}</td>
+                    <td>{{ coin.symbol }}</td>
+                    <td>${{ coin.current_price }}</td>
+                    <td>${{ coin.all_time_high }}</td>
+                    <td>${{ coin.market_cap }}</td>
+                    <td>
+                        <form method="POST" action="{{ url_for('lists.added_to_list', crypto_name=coin.name) }}">
+                            <input type="hidden" name="coin_name" value="{{ coin.name }}">
+                            <input type="hidden" name="coin_symbol" value="{{ coin.symbol }}">
+                            <input type="hidden" name="all_time_high" value="{{ coin.all_time_high }}">
+                            <input type="hidden" name="current_price" value="{{ coin.current_price }}">
+                            <input type="hidden" name="market_cap" value="{{ coin.market_cap }}">
+                            <button type="submit" id="plus"></button>
+                        </form>
+                    </td>
+                </tr>
+            
+            {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
+

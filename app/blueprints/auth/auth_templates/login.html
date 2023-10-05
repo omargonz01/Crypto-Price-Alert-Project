@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block styles %} 
+    <link rel="stylesheet" href="../static/styles/login.css">
+{% endblock %}
+
+{% block title %} 
+✔ Login Here ✔
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <img src="../static/images/degen_zone-transformed.png" height="200px" width="auto" alt="degen zone logo">
+    <h2>Login</h2>
+    <form method="POST" class="w-50 mx-auto">
+        {{ form.hidden_tag() }}
+        <div class="mb-3">
+            {{ form.email(class='form-control', placeholder="Email Address")}}
+            <div id="emailHelp" class="form-text">Don't worry, we wont sell your info (づ￣ 3￣)づ</div>
+        </div>
+        <div class="mb-3">
+            {{ form.password(class='form-control', placeholder='Password')}}
+        </div>
+        {{ form.submit_btn(class='btn d-block mx-auto mt-5') }}
+    </form>
+</div>
+{% endblock %}

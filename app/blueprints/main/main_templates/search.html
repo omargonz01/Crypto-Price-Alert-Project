@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+
+{% block styles %} 
+    <link rel="stylesheet" href="../static/styles/search.css">
+{% endblock %}
+
+{% block title %} 
+  🔍 Search Page 🔎
+{% endblock %}
+
+{% block content %}
+{% include './includes/nav.html' %}
+<div class="background">
+    <h1 class="w-50 mx-auto"><u><em> Entering The Degen Zone </em></u></h1>
+    <h3 class="w-50 mx-auto"><em>Some calculations for the average degen</em></h3>
+    
+    <form method="POST" class="w-50 mx-auto">
+      <label for="coin">Enter a cryptocurrency:</label><br>
+      <input  class="crypto-form form mx-auto" type="text" id="coin" name="coin" placeholder="＼(ﾟｰﾟ＼)(ʘ ͟ʖ ʘ)( ﾉ ﾟｰﾟ)ﾉ"><br>
+      <input class="btn btn-sm" type="submit" value="Search 🔎">
+    </form>
+    {% if coin %}
+      <table class="table-dark table-hover w-50 mx-auto" id="coin-table">
+        <thead class="mx-auto">
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Coin</th>
+            <th scope="col">Symbol</th>
+            <th scope="col">All-Time High</th>
+            <th scope="col">Current Price</th>
+            <th scope="col">Market Cap</th>
+          </tr>
+        </thead>
+        <tbody class="mx-auto">
+          <tr>
+            <th scope="row"></th>
+            <td>{{ coin }}</td>
+            <td>{{ coin_symbol }}</td>
+            <td>${{ all_time_high }}</td>
+            <td>${{ current_price }}</td>
+            <td>${{ market_cap }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <button class="btn btn-sm d-block mx-auto" id="calc-button1" onclick="calculate()">If Moon🚀🚀🚀</button>
+      <button class="btn btn-sm mx-auto" id="calculate-half-button" style="display: none;" onclick="calculateHalf()">If Baby Moon🚀</button>
+      <p id="result"></p>
+
+
+      <div id="result-card" style="display: none;" class="card-dark w-50 mx-auto">
+        <div class="card-body mx-auto">
+          <h5 class="card-title" id="coin-name"></h5>
+          <p class="card-text" id="potential-gain"></p>
+          <a id="chart-link-card" class="btn btn-sm" href="#" target="_blank">Check Market Cap</a>
+          <button class="btn btn-sm" onclick="addToMyList()" 
+            data-coin="{{ coin }}"
+            data-symbol="{{ coin_symbol }}"
+            data-all-time-high="{{ all_time_high }}"
+            data-current-price="{{ current_price }}"
+            data-market-cap="{{ market_cap }}">Add to My List
+          </button>
+          <button class="btn btn-sm" onclick="openAlertsTab()">Set Alert</button>
+        </div>
+      </div>
+      <p class="em-p"><em><u>(Scroll here or click View Categories above to search cryptocurrencies)</u></em><br>⇓⇩⇓</p>
+     <!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container mx-auto">
+  <div class="tradingview-widget-container__widget"></div>
+  
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js" async>
+  {
+  "width": 1000,
+  "height": 490,
+  "defaultColumn": "overview",
+  "screener_type": "crypto_mkt",
+  "displayCurrency": "USD",
+  "colorTheme": "dark",
+  "locale": "in",
+  "isTransparent": true
+}
+  </script>
+</div>
+<!-- TradingView Widget END -->
+   
+      <script>
+        function calculate() {
+          const allTimeHigh = parseFloat('{{ all_time_high }}');
+          const currentPrice = parseFloat('{{ current_price }}');
+          const potentialGain = ((allTimeHigh - currentPrice) / currentPrice) * 100;
+          const coinName = '{{ coin }}';
+          
+          
+          document.getElementById('coin-name').textContent = coinName;
+          document.getElementById('potential-gain').textContent = 'Potential gain to ATH: ' + potentialGain.toFixed(2) + '%';
+          document.getElementById('result-card').style.display = 'block';
+          
+          document.getElementById('calculate-half-button').style.display = 'block';
+          document.getElementById('chart-link-card').href = 'https://www.coingecko.com/en/coins/' + coinName + '/historical_data/';
+        }
+        
+        function calculateHalf() {
+          const halfAllTimeHigh = parseFloat('{{ all_time_high }}') / 2;
+          const currentPrice = parseFloat('{{ current_price }}');
+          const potentialGain = ((halfAllTimeHigh - currentPrice) / currentPrice) * 100;
+          const coinName = '{{ coin }}';
+          
+  
+          document.getElementById('coin-name').textContent = coinName;
+          document.getElementById('potential-gain').textContent = 'Potential gain to 50% of all-time high: ' + potentialGain.toFixed(2) + '%';
+          document.getElementById('result-card').style.display = 'block';
+          document.getElementById('chart-link').style.display = 'block';
+          document.getElementById('chart-link').href = 'https://www.coingecko.com/en/coins/' + coinName + '/historical_data/';
+        }
+        
+        function addToMyList() {
+          const coinName = '{{ coin }}';
+          const coinSymbol = '{{ coin_symbol }}';
+          const allTimeHigh = parseFloat('{{ all_time_high }}');
+          const currentPrice = parseFloat('{{ current_price }}');
+          const marketCap = parseFloat('{{ market_cap }}');
+        
+          // Make the POST request with all the required data
+          $.post('{{ url_for('lists.add_to_list', crypto_name='') }}' + coinName, { 
+            coin_name: coinName,
+            coin_symbol: coinSymbol,
+            all_time_high: allTimeHigh,
+            current_price: currentPrice,
+            market_cap: marketCap
+          }, function(data) {
+            if (data.success) {
+              alert('Successfully added to your list');
+            } else {
+              alert('Failed to add to your list');
+            }
+          });
+        }
+
+        function openAlertsTab() {
+          // Open the Alerts Set Alert page in a new tab
+          window.open('{{ url_for('alerts.set_alert') }}', '_blank');
+        }
+
+      </script>
+    </div>
+    {% endif %}
+{% endblock %}

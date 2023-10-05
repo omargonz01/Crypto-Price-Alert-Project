@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}
+🔔 Update Alerts 🔔
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="../../../static/styles/update_alert.css">
+<link rel="stylesheet" href="../../../static/styles/nav.css">
+{% endblock %}
+
+{% block content %}
+{% include './includes/nav.html'%}
+<div class="container">
+    <h2 class="text-center">Update Alert</h2>
+    <h5 class="card-title">{{ alert.crypto_name.title() }}</h5>
+    <p class="card-text">{{ alert.direction.title() }}</p>
+    <p class="card-text">${{ alert.price }}</p>
+    <p class="card-text">{{ alert.channel.title() }}</p>
+    <h5><em>Trade smarter with Degen Zone.</em></h5>
+    <div id="emailHelp" class="form-text">Update Alert Preferences (づ￣ 3￣)づ</div>
+    <form method="POST" action="{{ url_for('alerts.update_alert', alert_id=alert.id) }}" class="w-50 mx-auto">
+        {{ form.hidden_tag() }}
+        <div class="mb-3">
+            {{ form.direction(class='form-control',placeholder='Direction')}}
+        </div>
+        <div class="mb-3">
+            {{ form.price(class='form-control',placeholder='Price Target')}}
+        </div>
+        <div class="mb-3">
+            {{ form.channel(class='form-control',placeholder='Alert Type')}}
+        </div>
+        {{ form.submit(class='btn d-block mx-auto mt-5') }}
+    </form>
+    
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Delete
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Are you sure you want to delete this {{ alert.crypto_name }} alert?</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    There is no turning back once you confirm. Proceed at your own peril. 
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="{{ url_for('alerts.delete_alert', alert_id=alert.id) }}" class="btn btn-danger">Confirm Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,141 @@
+.background {
+    background: linear-gradient(to bottom, #1f242d, #1f242d, #1a1b1f, #121212);
+    min-height: 100vh;
+    font-family: 'Exo', sans-serif;
+    overflow: hidden;
+    width: 100%;
+}
+
+
+@media (min-width: 768px) {
+    .figure-flex {
+        display: flex;
+        flex-direction: row;
+    }
+    .figure-img {
+        max-width: 40%;
+        max-height: 90%;
+    }
+    .figure-caption {
+        max-width: 60%;
+    }
+}
+
+body {
+    background: linear-gradient(to bottom, #1f242d, #1f242d, #1a1b1f, #121212);
+    font-family: 'Exo', sans-serif;
+    margin: 0; 
+    overflow: visible;
+    min-height: 100vh;
+}
+
+figure {
+    width: 80%;
+    border: 1px solid #587c7f;
+    border-radius: 5px;
+    padding: 10px;
+    padding-left: 18px;
+    margin: 20vh auto;
+}
+
+figure img {
+    display: block;
+    width: 100%;
+    height: 90%;
+    margin: 20 auto;
+}
+.figure-img{
+    margin-top: 8px;
+}
+
+.figure-caption {
+    margin: 20px;
+    padding-left: 20px;
+    text-align: left;
+    color: whitesmoke;
+    margin: 10px 0;
+}
+.figure-caption img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #0099ff;
+    text-decoration: underline;
+}
+.texty{
+    font-weight: 800;
+    font-size: xx-large;
+    text-align: center;
+}
+.btn {
+    color: whitesmoke;
+    margin: 1px;
+    padding: 12px 24px;
+    background-color:#526175;
+}
+.btn:hover {
+    background-color: #8aa3a5;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    
+}
+p{
+    color:whitesmoke;
+    margin:20px;
+    font-size: 20px;
+    text-shadow: rgba(255, 255, 255, 0.19) 0px 10px 20px, rgba(255, 255, 255, 0.23) 0px 6px 6px;
+}
+
+
+.main-section {
+    background-color: #1f242d;
+    color: #fff;
+    padding: 50px 0;
+}
+
+.container {
+    max-width: 1140px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+img {
+    
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
+img:hover {
+    box-shadow: rgb(217, 227, 237) 0px 20px 30px -10px;
+}
+
+.top-img1 img {
+    display:block;
+    max-width: 100%;
+    height: auto;
+    margin: 20px auto 100px;
+    box-shadow: none !important;
+}
+
+.top-img1 img, .navbar-brand:hover {
+    box-shadow: none !important;
+}
+
+
+.ptags {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.empty-space {
+    margin: 70px;
+}

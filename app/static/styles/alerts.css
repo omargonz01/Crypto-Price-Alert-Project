@@ -1,0 +1,94 @@
+.background {
+    background: linear-gradient(to bottom, #1f242d, #1f242d, #1a1b1f, #121212);
+    min-height: 100vh;
+    font-family: 'Exo', sans-serif;
+    overflow: hidden;
+}
+
+
+@media (min-width: 768px) {
+    .figure-flex {
+        display: flex;
+        flex-direction: row;
+    }
+    .figure-img {
+        max-width: 40%;
+        max-height: 90%;
+    }
+    .figure-caption {
+        max-width: 60%;
+    }
+}
+h1 {
+    color:whitesmoke;
+    margin:30px;
+    margin-top: 40px;
+    text-align: center;
+    
+}
+
+body {
+    background: linear-gradient(to bottom, #1f242d, #1f242d, #1a1b1f, #121212);
+    font-family: 'Exo', sans-serif;
+    margin: 0; 
+    overflow: visible;
+    min-height: 100vh;
+}
+
+
+figure {
+    width: 80%;
+    border: 1px solid #587c7f;
+    border-radius: 5px;
+    padding: 10px;
+    padding-left: 18px;
+    margin: 20vh auto;
+}
+
+
+figure img {
+    display: block;
+    width: 100%;
+    height: 90%;
+    margin: 20 auto;
+}
+.figure-img{
+    margin-top: 8px;
+}
+
+.figure-caption {
+    margin: 20px;
+    padding-left: 20px;
+    text-align: left;
+    color: whitesmoke;
+    margin: 10px 0;
+}
+.figure-caption img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Set the color and text-decoration for the links */
+a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+/* Set the color and text-decoration for the links when hovered */
+a:hover {
+    color: #0099ff;
+    text-decoration: underline;
+}
+.texty{
+    font-weight: 800;
+    font-size: xx-large;
+    text-align: center;
+}
+.card:hover {
+    background-color: #ccd8d8;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    box-shadow: rgb(217, 227, 237) 0px 20px 30px -10px;
+
+}
