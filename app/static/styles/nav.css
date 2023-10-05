@@ -46,7 +46,12 @@
 .navbar ul li a:hover {
     color: #8aa3a5;
 }
-
+a#no-hov:hover {
+    color: whitesmoke;
+}
+a#no-hov:hover:after {
+    color: whitesmoke;
+}
 .navbar ul li a:hover::after {
     content: '';
     position: absolute;
