@@ -20,13 +20,14 @@
       <input class="btn btn-sm" type="submit" value="Search 🔎">
     </form>
     {% if coin %}
+    <div class="table-responsive">
       <table class="table-dark table-hover w-50 mx-auto" id="coin-table">
         <thead class="mx-auto">
           <tr>
             <th scope="col"></th>
             <th scope="col">Coin</th>
             <th scope="col">Symbol</th>
-            <th scope="col">All-Time High</th>
+            <th scope="col">ATH</th>
             <th scope="col">Current Price</th>
             <th scope="col">Market Cap</th>
           </tr>
@@ -42,6 +43,7 @@
           </tr>
         </tbody>
       </table>
+      </div>
 
       <button class="btn btn-sm d-block mx-auto" id="calc-button1" onclick="calculate()">If Moon🚀🚀🚀</button>
       <button class="btn btn-sm mx-auto" id="calculate-half-button" style="display: none;" onclick="calculateHalf()">If Baby Moon🚀</button>
@@ -64,25 +66,28 @@
         </div>
       </div>
       <p class="em-p"><em><u>(Scroll here or click View Categories above to search cryptocurrencies)</u></em><br>⇓⇩⇓</p>
-     <!-- TradingView Widget BEGIN -->
-<div class="tradingview-widget-container mx-auto">
-  <div class="tradingview-widget-container__widget"></div>
-  
-  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js" async>
-  {
-  "width": 1000,
-  "height": 490,
-  "defaultColumn": "overview",
-  "screener_type": "crypto_mkt",
-  "displayCurrency": "USD",
-  "colorTheme": "dark",
-  "locale": "in",
-  "isTransparent": true
-}
-  </script>
-</div>
-<!-- TradingView Widget END -->
-   
+      
+      <!-- Container for TradingView Widget -->
+<div class="tradingview-widget-container-wrapper">  
+      <!-- TradingView Widget BEGIN -->
+  <div class="tradingview-widget-container mx-auto">
+    <div class="tradingview-widget-container__widget"></div>
+    
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js" async>
+    {
+    "width": 1000,
+    "height": 490,
+    "defaultColumn": "overview",
+    "screener_type": "crypto_mkt",
+    "displayCurrency": "USD",
+    "colorTheme": "dark",
+    "locale": "in",
+    "isTransparent": true
+  }
+    </script>
+  </div>
+  <!-- TradingView Widget END -->
+</div>  
       <script>
         function calculate() {
           const allTimeHigh = parseFloat('{{ all_time_high }}');

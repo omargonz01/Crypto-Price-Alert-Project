@@ -99,6 +99,10 @@ h5 {
     box-shadow: rgb(217, 227, 237) 0px 20px 30px -10px;
 }
 
+.tradingview-widget-container-wrapper {
+    overflow-x: auto;
+}
+
 #coin-table {
     margin-bottom: 20px; 
     margin-top: 10px;
@@ -111,4 +115,7 @@ h5 {
     color:whitesmoke;
     text-align: center;
     justify-content: center;
+}
+#coin-table th,td {
+    padding: 0 15px;
 }

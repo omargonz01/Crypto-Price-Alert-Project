@@ -114,6 +114,7 @@ img {
 
 img:hover {
     box-shadow: rgb(217, 227, 237) 0px 20px 30px -10px;
+    transition: box-shadow 0.5s ease-in-out;
 }
 
 .top-img1 img {
@@ -122,12 +123,12 @@ img:hover {
     height: auto;
     margin: 20px auto 100px;
     box-shadow: none !important;
+    transition: box-shadow 0.5s ease-in-out;
 }
 
 .top-img1 img, .navbar-brand:hover {
     box-shadow: none !important;
 }
-
 
 .ptags {
     display: flex;

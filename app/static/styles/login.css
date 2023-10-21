@@ -73,6 +73,19 @@ h5 {
     color:whitesmoke;
 }
 
+/* make mobile friendly for browser windows < 600px wide */
+@media only screen and (max-width: 600px) {
+    .container {
+        width: 90%;
+        margin-top: 20px;
+        padding: 20px;
+    }
 
-/* background-color: var(--color-header-bg);
-    background-image: linear-gradient(to bottom, #1f242d, #1f242d, #1a1b1f, #121212); */
+    form, h2, h1, h3 {
+        margin:10px;
+    }
+
+    .btn {
+        padding: 6px 12px!important;
+    }
+}
