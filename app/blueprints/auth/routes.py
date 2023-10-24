@@ -45,3 +45,21 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('main.home'))
+
+@auth.route('/reset_password', methods=['GET', 'POST'])
+def reset_password():
+    form = ResetPasswordForm()
+    if form.validate_on_submit():
+        email = form.email.data 
+        user = User.query.filter_by(email=email).first()
+        if user:
+            secret_key = secrets.token_urlsafe(16)
+            reset_request = ResetRequest(secret_key=secret_key, timestamp=datetime.utcnow(), user_id=user.id) db.session.add(reset_request) db.session.commit()
+            reset_url = url_for('auth.reset_password_confirm', secret_key=secret_key, _external=True)
+            send_email(subject='Password Reset', recipients=[email], text_body=f'Click on this link to reset your password: {reset_url}')
+            flash('An email has been sent to you with instructions to reset your password.')
+        else:
+            flash('This email is not registered.')
+        return redirect(url_for('auth.login'))
+    return render_template('reset_password.html', form=form)
+

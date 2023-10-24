@@ -1,6 +1,8 @@
 from flask_wtf import FlaskForm
 from wtforms import EmailField, PasswordField, SubmitField, StringField 
-from wtforms.validators import DataRequired, EqualTo
+from wtforms.validators import DataRequired, EqualTo, Email
+from flask import Flask, render_template, redirect, url_for, flash 
+from wtforms import StringField, SubmitField
 
 class LoginForm(FlaskForm):
     email = EmailField('Email Address: ', validators=[DataRequired()])
@@ -17,3 +19,7 @@ class SignupForm(FlaskForm):
 
 class CryptoForm(FlaskForm):
     cryptoCoinName = StringField('Enter a Cryptocurrency: ', validators=[DataRequired()])
+
+class ResetPasswordForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    submit = SubmitField('Request Password Reset') 

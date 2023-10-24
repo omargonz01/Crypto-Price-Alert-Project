@@ -2,6 +2,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from werkzeug.security import generate_password_hash
 from flask_login import UserMixin
+import secrets 
 
 db = SQLAlchemy()
 
@@ -84,3 +85,14 @@ class Alert(db.Model):
         self.channel = channel
         self.user_id = user_id
 
+class ResetRequest(db.Model):  
+    id = db.Column(db.Integer, primary_key=True)
+    secret_key = db.Column(db.String, unique=True, nullable=False)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow())
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    def __init__(self, secret_key, user_id):
+        self.secret_key = secret_key
+        self.user_id = user_id
+
+        

@@ -15,6 +15,9 @@
     <p><strong>Fellow Degen</strong> {{ user.first_name }} {{ user.last_name }}, glad to have you here!</p>
     <p><strong>Email:</strong> {{ user.email }}</p>
     <p><strong>Account Created On:</strong> {{ user.date_created.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+    <h2>This is where we can set a password reset link.</h2>
+    <p>Will need to make the password reset form</p>
+    <input type="radio" value="">
     <a href="{{ url_for('lists.my_list') }}" class="btn btn-dark">My List</a>
     <a href="{{ url_for('alerts.my_alerts') }}" class="btn btn-dark">My Alerts</a>
     <a href="{{ url_for('lists.view_notes') }}" class="btn btn-dark">View All Notes</a>
