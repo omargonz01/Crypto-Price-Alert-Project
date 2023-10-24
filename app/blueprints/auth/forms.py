@@ -21,5 +21,10 @@ class CryptoForm(FlaskForm):
     cryptoCoinName = StringField('Enter a Cryptocurrency: ', validators=[DataRequired()])
 
 class ResetPasswordForm(FlaskForm):
-    email = StringField('Email', validators=[DataRequired(), Email()])
+    email = EmailField('Email', validators=[DataRequired()])
     submit = SubmitField('Request Password Reset') 
+
+class ResetPasswordConfirmForm(FlaskForm):
+    new_password = PasswordField('New Password', validators=[DataRequired()])
+    new_password_confirm = PasswordField('Confirm New Password', validators=[DataRequired(), EqualTo('new_password')])
+    submit = SubmitField('Reset Password')

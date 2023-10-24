@@ -1,9 +1,13 @@
 from . import auth
-from .forms import LoginForm, SignupForm
+from .forms import LoginForm, SignupForm, ResetPasswordForm, ResetPasswordConfirmForm
 from flask import request, flash, redirect, url_for, render_template
-from app.models import User, db
-from werkzeug.security import check_password_hash
+from app.models import User, db, ResetRequest
+from werkzeug.security import check_password_hash, generate_password_hash
 from flask_login import login_user, logout_user, current_user
+import secrets 
+from datetime import datetime
+from mailjet_rest import Client
+import os
 
 @auth.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -54,12 +58,60 @@ def reset_password():
         user = User.query.filter_by(email=email).first()
         if user:
             secret_key = secrets.token_urlsafe(16)
-            reset_request = ResetRequest(secret_key=secret_key, timestamp=datetime.utcnow(), user_id=user.id) db.session.add(reset_request) db.session.commit()
+            reset_request = ResetRequest(secret_key=secret_key,  user_id=user.id) 
+            db.session.add(reset_request) 
+            db.session.commit()
             reset_url = url_for('auth.reset_password_confirm', secret_key=secret_key, _external=True)
-            send_email(subject='Password Reset', recipients=[email], text_body=f'Click on this link to reset your password: {reset_url}')
+            # Set up Mailjet
+            mailjet_api_key = os.getenv("MAILJET_API_KEY")
+            api_secret = os.getenv("MAILJET_API_SECRET")
+            mailjet = Client(auth=(mailjet_api_key, api_secret), version='v3.1')
+            # Format a message
+            message = {
+                'Messages': [
+                    {
+                        "From": {
+                            "Email": "help@ogwholesaling.com",
+                            "Name": "Degen Zone"
+                        },
+                        "To": [
+                            {
+                                "Email": user.email,
+                                "Name": f"{user.first_name} {user.last_name}"
+                            }
+                        ],
+                        "Subject": "Password Reset",
+                        "TextPart": f"You have requested to reset your password for Degen Zone. Click on this link to reset your password: {reset_url}",
+                        "HTMLPart": f"<h3>You have requested to reset your password for Degen Zone.</h3><br />Click on this link to reset your password: <a href='{reset_url}'>Reset Password</a>",
+                        "CustomID": "PasswordReset"
+                    }
+                ]
+            }
+            # Send the email
+            result = mailjet.send.create(data=message)
+            print(result.status_code)
+            print(result.json())
             flash('An email has been sent to you with instructions to reset your password.')
         else:
             flash('This email is not registered.')
         return redirect(url_for('auth.login'))
-    return render_template('reset_password.html', form=form)
+    return render_template('/reset_password.html', form=form)
+
+@auth.route('/reset_password_confirm/<secret_key>', methods=['GET', 'POST'])
+def reset_password_confirm(secret_key):
+    form = ResetPasswordConfirmForm()
+    reset_request = ResetRequest.query.filter_by(secret_key=secret_key).first()
+    if reset_request:
+        user = reset_request.user
+        if form.validate_on_submit():
+            new_password = form.new_password.data
+            user.password = generate_password_hash(new_password)
+            db.session.delete(reset_request)
+            db.session.commit()
+            flash('Your password has been updated.')
+            return redirect(url_for('auth.login'))
+        return render_template('reset_password_confirm.html', form=form, secret_key=secret_key)
+    else:
+        flash('Invalid or expired token.')
+        return redirect(url_for('auth.reset_password'))
 
