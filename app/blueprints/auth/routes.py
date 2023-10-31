@@ -81,8 +81,8 @@ def reset_password():
                             }
                         ],
                         "Subject": "Password Reset",
-                        "TextPart": f"You have requested to reset your password for Degen Zone. Click on this link to reset your password: {reset_url}",
-                        "HTMLPart": f"<h3>You have requested to reset your password for Degen Zone.</h3><br />Click on this link to reset your password: <a href='{reset_url}'>Reset Password</a>",
+                        "TextPart": f"Hello there,\n\nWe've received your request to reset your password for Degen Zone. To get back on track, simply click on the link below:\n\n{reset_url}\n\n If you didn't request this, no worries - just disregard this message.\n\nBest regards,\nYour friends at Degen Zone",
+                        "HTMLPart": f"<h3>Hello there!</h3><br /><p>We noticed that you've requested to reset your password for Degen Zone. Don't worry; we've got you covered. Just click the button below to reset your password:</p><br /><a href='{reset_url}'><button style='background-color: #4CAF50; color: white; border: none; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer; border-radius: 5px;'>Reset Password</button></a><br /><p>If you didn't initiate this request, please ignore this message, and your account will remain secure.</p><br /><p>Warm regards,<br />Your friends at Degen Zone</p>",
                         "CustomID": "PasswordReset"
                     }
                 ]
