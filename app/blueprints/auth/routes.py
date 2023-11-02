@@ -91,9 +91,10 @@ def reset_password():
             result = mailjet.send.create(data=message)
             print(result.status_code)
             print(result.json())
-            flash('An email has been sent to you with instructions to reset your password.')
+            flash('An email has been sent to you with instructions to reset your password.', 'success')
+            logout_user()
         else:
-            flash('This email is not registered.')
+            flash('This email is not registered.', 'danger')
         return redirect(url_for('auth.login'))
     return render_template('/reset_password.html', form=form)
 
