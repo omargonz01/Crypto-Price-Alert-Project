@@ -23,6 +23,7 @@
             {{ form.password(class='form-control', placeholder='Password')}}
         </div>
         {{ form.submit_btn(class='btn d-block mx-auto mt-5') }}
+        <a href="{{ url_for('auth.reset_password') }}"><em>Forgot Password?</em></a>
     </form>
 </div>
 {% endblock %}
