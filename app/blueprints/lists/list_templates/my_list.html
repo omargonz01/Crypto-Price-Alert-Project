@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
-{% block styles %} 
-    <link rel="stylesheet" href="../static/styles/mylist.css">
+{% block styles %}
+<link rel="stylesheet" href="../static/styles/mylist.css">
 {% endblock %}
 
 {% block title %}
@@ -14,45 +14,47 @@
 
 <div class="background">
   <h1 class="w-50 text-center mx-auto"><u>🔍 My List 🔎</u></h1>
-  <table class="table table-dark table-hover w-75 mx-auto">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col"><u>Crypto Name</u></th>
-        <th scope="col"><u>Symbol</u></th>
-        <th scope="col"><u>Current Price</u></th>
-        <th scope="col">ATH</th>
-        <th scope="col">Market Cap</th>
-        <th scope="col">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
+  <div class="table-responsive">
+    <table class="table table-dark table-hover w-75 mx-auto">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col"><u>Crypto Name</u></th>
+          <th scope="col"><u>Symbol</u></th>
+          <th scope="col"><u>Current Price</u></th>
+          <th scope="col">ATH</th>
+          <th scope="col">Market Cap</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
 
-      {% for crypto in cryptos %}
+        {% for crypto in cryptos %}
 
-      <tr>
-        <td>{{ loop.index }}</td>
-        <td>{{ crypto.name }}</td>
-        <td>{{ crypto.symbol }}</td>
-        <td>${{ crypto.current_price }}</td>
-        <td>${{ crypto.all_time_high_price }}</td>
-        <td>${{ crypto.market_cap }}</td>
-        <td>
-          <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
-            data-bs-target="#notesModal{{ crypto.id }}">
-            Notes
-          </button>
-          <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-            data-bs-target="#removeConfirmationModal{{ crypto.id }}">
-            Remove
-          </button>
-        </td>
-      </tr>
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td>{{ crypto.name }}</td>
+          <td>{{ crypto.symbol }}</td>
+          <td>${{ crypto.current_price }}</td>
+          <td>${{ crypto.all_time_high_price }}</td>
+          <td>${{ crypto.market_cap }}</td>
+          <td>
+            <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
+              data-bs-target="#notesModal{{ crypto.id }}">
+              Notes
+            </button>
+            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+              data-bs-target="#removeConfirmationModal{{ crypto.id }}">
+              Remove
+            </button>
+          </td>
+        </tr>
 
-      {% endfor %}
+        {% endfor %}
 
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <!-- Notes Modals -->

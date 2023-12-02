@@ -1,18 +1,19 @@
 {% extends 'base.html' %}
 
-{% block styles %} 
-    <link rel="stylesheet" href="../static/styles/all_notes.css">
+{% block styles %}
+<link rel="stylesheet" href="../static/styles/all_notes.css">
 {% endblock %}
 
 {% block title %}
-    📝 All Notes 📝
+📝 All Notes 📝
 {% endblock %}
 
 {% block content %}
 
-    {% include './includes/nav.html' %}
+{% include './includes/nav.html' %}
 
-    <div class="background">
+<div class="background">
+    <div class="table-responsive">
         <h1 class="w-50 text-center mx-auto"><u>📋 All Notes 📋</u></h1>
         <ul class="list-group w-75 mx-auto">
 
@@ -24,7 +25,7 @@
                     <span id="note{{ user_crypto.crypto.id }}">{{ user_crypto.notes }}</span>
                 </div>
                 <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
-                        data-bs-target="#editModal{{ user_crypto.crypto.id }}">
+                    data-bs-target="#editModal{{ user_crypto.crypto.id }}">
                     Edit Notes
                 </button>
             </li>
@@ -32,43 +33,46 @@
             {% endfor %}
 
             {% for user_crypto in user_cryptos %}
-                
-                <div class="modal fade" id="editModal{{ user_crypto.crypto.id }}" tabindex="-1" role="dialog"
-                    aria-labelledby="editModalLabel{{ user_crypto.crypto.id }}" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="editModalLabel{{ user_crypto.crypto.id }}">Edit Notes</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <textarea id="editCryptoNotes{{ user_crypto.crypto.id }}" class="form-control" rows="5">{{ user_crypto.notes }}</textarea>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                <button type="button" class="btn btn-primary" onclick="saveNotes({{ user_crypto.crypto.id }})">Save Notes</button>
-                            </div>
+
+            <div class="modal fade" id="editModal{{ user_crypto.crypto.id }}" tabindex="-1" role="dialog"
+                aria-labelledby="editModalLabel{{ user_crypto.crypto.id }}" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editModalLabel{{ user_crypto.crypto.id }}">Edit Notes</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <textarea id="editCryptoNotes{{ user_crypto.crypto.id }}" class="form-control"
+                                rows="5">{{ user_crypto.notes }}</textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary"
+                                onclick="saveNotes({{ user_crypto.crypto.id }})">Save Notes</button>
                         </div>
                     </div>
                 </div>
+            </div>
 
             {% endfor %}
 
         </ul>
     </div>
-    <script>
-        function saveNotes(cryptoId) {
-            const notesTextarea = document.getElementById(`editCryptoNotes${cryptoId}`);
-            const notes = notesTextarea.value;
+</div>
+<script>
+    function saveNotes(cryptoId) {
+        const notesTextarea = document.getElementById(`editCryptoNotes${cryptoId}`);
+        const notes = notesTextarea.value;
 
-            // Send an AJAX request to update the notes for this crypto
-            fetch(`/lists/view_my_notes`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ crypto_id: cryptoId, notes }),
-            })
+        // Send an AJAX request to update the notes for this crypto
+        fetch(`/lists/view_my_notes`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ crypto_id: cryptoId, notes }),
+        })
             .then(response => response.json())
             .then(data => {
                 if (data.message === 'Notes updated successfully') {
@@ -85,7 +89,7 @@
             .catch(error => {
                 console.error('Error:', error);
             });
-        }
-    </script>
-    
+    }
+</script>
+
 {% endblock %}

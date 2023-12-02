@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
-{% block styles %} 
-    <link rel="stylesheet" href="../static/styles/lists.css">
+{% block styles %}
+<link rel="stylesheet" href="../static/styles/lists.css">
 {% endblock %}
 
-{% block title %} 
+{% block title %}
 🐸 Meme Coins 🐸
 {% endblock %}
 
@@ -15,21 +15,22 @@
 
 <div class="background">
     <h1 class="w-50 text-center mx-auto"><u>👽 Meme Coins 👽</u></h1>
-    <table class="table table-dark table-hover w-75 mx-auto">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Crypto Name</th>
-                <th scope="col">Symbol</th>
-                <th scope="col">Current Price</th>
-                <th scope="col">ATH</th>
-                <th scope="col">Market Cap</th>
-                <th scope="col">Add to List</th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="table-responsive">
+        <table class="table table-dark table-hover w-75 mx-auto">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Crypto Name</th>
+                    <th scope="col">Symbol</th>
+                    <th scope="col">Current Price</th>
+                    <th scope="col">ATH</th>
+                    <th scope="col">Market Cap</th>
+                    <th scope="col">Add to List</th>
+                </tr>
+            </thead>
+            <tbody>
 
-            {% for coin in coins %}
+                {% for coin in coins %}
 
                 <tr>
                     <td>{{ loop.index }}</td>
@@ -49,12 +50,12 @@
                         </form>
                     </td>
                 </tr>
-            
-            {% endfor %}
 
-        </tbody>
-    </table>
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
 </div>
 
 {% endblock %}
-
