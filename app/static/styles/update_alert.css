@@ -13,20 +13,20 @@ body {
     min-height: 100vh;
 }
 
-form {
+/* form {
     color:whitesmoke;
     margin:20px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
-}
-h1 {
+} */
+/* h1 {
     color:whitesmoke;
     margin:20px;
-}
-h3 {
+} */
+/* h3 {
     color:black;
     margin:20px;
-}
-h2{
+} */
+/* h2{
     color:whitesmoke;
     text-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     margin:20px;
@@ -35,24 +35,29 @@ h5 {
     font-weight: 100;
     color:whitesmoke;
     text-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-}
+} */
 
 #coin-name{
     font-weight: 400;
 }
 
-.btn {
+/* .btn {
     color: whitesmoke;
     margin: 1px;
     padding: 12px 24px!important;
     background-color:#526175;
+} */
+.btn {
+    padding: 12px 24px!important; /* Keep your original padding */
+    font-size: inherit; /* Use the font size from the parent element */
+    margin-bottom: 15px; /* Space after the button */
 }
 .btn:hover {
     background-color: #8aa3a5;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
-.form-control{
+/* .form-control{
     background-color: #ccd8d8;
 }
 
@@ -60,9 +65,9 @@ h5 {
     border-color: #8aa3a5;
     outline: 0;
     box-shadow: 0 0 0 0.2rem #8aa3a5;
-}
+} */
 
-.container{
+/* .container{
     background: linear-gradient(to bottom,  #252b33, #22272f,  #22272f,  #252b33);
     display: flex;
     flex-direction: column;
@@ -74,17 +79,63 @@ h5 {
     padding: 50px;
     border-radius: 10px;
     box-shadow: rgb(217, 227, 237) 0px 20px 30px -10px;
+} */
+
+/* Container */
+.container {
+    background: linear-gradient(to bottom, #252b33, #22272f);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: rgb(217, 227, 237) 0px 20px 30px -10px;
+    width: 40%; /* Keep your original width */
+    margin: 50px auto; /* Center the container */
 }
 
 #emailHelp {
     margin-bottom: 20px;
     color:whitesmoke;
 }
-.card-title, .card-text {
+/* .card-title, .card-text {
     font-weight: 100;
     color:whitesmoke;
+    text-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+} */
+
+/* Typography */
+h1, h2, h3, h5, .card-title, .card-text {
+    color: whitesmoke;
     text-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 /* background-color: var(--color-header-bg);
     background-image: linear-gradient(to bottom, #1f242d, #1f242d, #1a1b1f, #121212); */
+
+/* Form and Controls */
+form, .form-control {
+    margin-bottom: 15px; /* Space between form elements */
+}
+
+.form-control:focus {
+    border-color: #8aa3a5;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem #8aa3a5;
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 95%; /* Increase width on smaller screens */
+        padding: 20px; /* Reduce padding on smaller screens */
+    }
+
+    h1, h2, h3, h5, .card-title, .card-text {
+        font-size: 4vw; /* Adjust font size for smaller screens */
+    }
+
+    form, .form-control, .btn {
+        width: 100%; /* Full width for better mobile experience */
+    }
+
+}
