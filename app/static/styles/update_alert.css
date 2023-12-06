@@ -48,13 +48,19 @@ h5 {
     background-color:#526175;
 } */
 .btn {
-    padding: 12px 24px!important; /* Keep your original padding */
-    font-size: inherit; /* Use the font size from the parent element */
-    margin-bottom: 15px; /* Space after the button */
+    color: whitesmoke;
+    padding: 12px 24px!important;
+    background-color: #526175;
+    display: inline-block; /* Ensure the button is not set to display: none */
+    visibility: visible; /* Ensure the button is not hidden */
+    opacity: 1; /* Ensure the button is fully opaque */
+    z-index: 10; /* Ensure the button is above other elements */
+    /* Other styles */
 }
+
 .btn:hover {
     background-color: #8aa3a5;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    /* Other hover styles */
 }
 
 /* .form-control{
