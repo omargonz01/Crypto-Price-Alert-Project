@@ -26,27 +26,33 @@ body, html {
 h1 {
     padding-bottom: 20px;
     padding-top: 50px;
-    color:whitesmoke;
+    color: whitesmoke;
 }
 
 .list-group-item {
-    color:whitesmoke;
+    color: whitesmoke;
     background-color: #212529;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 10px; 
 }
 
 .list-group {
     box-shadow: rgb(217, 227, 237) 0px 10px 15px -5px;
 }
+
 .list-group-item:hover {
-    color:rgb(11, 11, 11);
+    color: rgb(11, 11, 11);
     background-color: #ccd8d8;
 }
+
 .btn {
     color: whitesmoke;
     margin: 1px;
     padding: 12px 24px!important;
-    background-color:#526175;
+    background-color: #526175;
 }
 
 .btn:hover {
@@ -57,12 +63,18 @@ h1 {
 .modal-content {
     font-family: 'Exo', sans-serif;
 }
+
 span {
-    display: inline-block;
-    width: 85%;
+    display: block; 
+    width: 100%; 
     white-space: pre-wrap;
-    white-space: -moz-pre-wrap;
-    white-space: -pre-wrap; 
-    white-space: -o-pre-wrap; 
     word-wrap: break-word;
+    margin-right: 10px; 
+}
+
+
+@media (min-width: 768px) {
+    .list-group-item {
+        padding: 15px; 
+    }
 }
