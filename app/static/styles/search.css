@@ -8,19 +8,21 @@
 body {
     background: linear-gradient(to bottom, #1f242d, #1f242d, #1a1b1f, #121212);
     font-family: 'Exo', sans-serif;
-    margin: 0; 
-    overflow: visible; 
+    margin: 0;
+    overflow: visible;
     min-height: 100vh;
 }
 
 form {
-    color:whitesmoke;
-    margin:20px;
+    color: whitesmoke;
+    margin: 20px;
 }
 
-h1,h3,h6 {
-    color:whitesmoke;
-    margin:20px;
+h1,
+h3,
+h6 {
+    color: whitesmoke;
+    margin: 20px;
 }
 
 h1 {
@@ -29,32 +31,34 @@ h1 {
 
 h5 {
     font-weight: 100;
-    color:whitesmoke;
+    color: whitesmoke;
     text-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-#coin-name{
+#coin-name {
     font-weight: 400;
 }
 
 .btn {
     color: whitesmoke;
     margin: 1px;
-    padding: 12px 24px!important;
-    background-color:#526175;
+    padding: 12px 24px !important;
+    background-color: #526175;
 }
+
 .btn:hover {
     background-color: #8aa3a5;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
-
+    transform: scale(1.05);
 }
+
 .crypto-form {
     margin: 5px;
     width: 100%;
-    background-color: #ccd8d8; 
-    border-radius: 5px; 
-    border: 1px solid #ccd8d8; 
-    
+    background-color: #ccd8d8;
+    border-radius: 5px;
+    border: 1px solid #ccd8d8;
+
 }
 
 .form:focus {
@@ -64,14 +68,14 @@ h5 {
     box-shadow: 0 0 0 0.2rem #8aa3a5;
 }
 
-.container{
-    background: linear-gradient(to bottom,  #1f242d, #22272f,  #252b33,  #121212);
+.container {
+    background: linear-gradient(to bottom, #1f242d, #22272f, #252b33, #121212);
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 50px;
-    
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#768497", endColorstr="#5F6F85", GradientType=1 );
+
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#768497", endColorstr="#5F6F85", GradientType=1);
     width: 40%;
     padding: 50px;
     border-radius: 10px;
@@ -82,17 +86,19 @@ h5 {
     border: 1px solid #4d6d6f;
     border-radius: 10px;
     color: whitesmoke;
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
     margin-top: 20px;
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    text-align: center; 
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
 }
-.card-body{
-    margin:15px;
+
+.card-body {
+    margin: 15px;
 }
+
 .tradingview-widget-container {
     margin-top: 20px;
     margin-bottom: 50px;
@@ -104,18 +110,21 @@ h5 {
 }
 
 #coin-table {
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
     margin-top: 10px;
 }
 
 #calc-button1 {
-    margin-bottom: 5px; 
+    margin-bottom: 5px;
 }
+
 .em-p {
-    color:whitesmoke;
+    color: whitesmoke;
     text-align: center;
     justify-content: center;
 }
-#coin-table th,td {
+
+#coin-table th,
+td {
     padding: 0 15px;
 }
