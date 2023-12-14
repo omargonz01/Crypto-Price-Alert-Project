@@ -105,3 +105,13 @@ input:valid {
     border-color: aquamarine;
 }
 
+label {
+    display: block;
+    padding-left: 1rem;
+    &:has(+ input:user-invalid):after {
+        content: "❌";
+    }
+    &:has(+ input:user-valid):after {
+        content: "✅";
+    }
+}

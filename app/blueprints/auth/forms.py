@@ -5,8 +5,8 @@ from flask import Flask, render_template, redirect, url_for, flash
 from wtforms import StringField, SubmitField
 
 class LoginForm(FlaskForm):
-    email = EmailField('Email Address: ', validators=[DataRequired()])
-    password = PasswordField('Password: ', validators=[DataRequired()])
+    email = EmailField('Email Address: ', validators=[DataRequired()], render_kw={"required": True})
+    password = PasswordField('Password: ', validators=[DataRequired()], render_kw={"required": True})
     submit_btn = SubmitField('Sign In')
 
 class SignupForm(FlaskForm):
