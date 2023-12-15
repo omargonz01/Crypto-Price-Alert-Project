@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block styles %} 
-    <link rel="stylesheet" href="../static/styles/login.css">
+    <link rel="stylesheet" href="../static/styles/signup.css">
 {% endblock %}
 
 {% block title %} 
@@ -17,19 +17,24 @@
 <form method="POST" class="w-50 mx-auto">
     {{ form.hidden_tag() }}
     <div class="mb-3">
+        {{ form.first_name.label }}
         {{ form.first_name(class='form-control',placeholder='First Name')}}
     </div>
     <div class="mb-3">
+        {{ form.last_name.label }}
         {{ form.last_name(class='form-control',placeholder='Last Name')}}
     </div>
     <div class="mb-3">
-        {{ form.email(class='form-control',placeholder='Email Address')}}
+        {{ form.email.label }}
+        {{ form.email(class='form-control',placeholder='Email')}}
     </div>
     <div id="emailHelp" class="form-text">Don't worry, we wont sell your info ❤</div>
     <div class="mb-3">
+        {{ form.password.label }}
         {{ form.password(class='form-control',placeholder='Password')}}
     </div>
     <div class="mb-3">
+        {{ form.confirm_password.label }}
         {{ form.confirm_password(class='form-control',placeholder='Confirm Password')}}
     </div>
     {{ form.submit_btn(class='btn d-block mx-auto mt-5') }}

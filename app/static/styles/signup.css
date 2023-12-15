@@ -1,0 +1,117 @@
+.background {
+    background: linear-gradient(to bottom, #1f242d, #1f242d, #1a1b1f, #121212);
+    min-height: 100vh;
+    font-family: 'Exo', sans-serif;
+    overflow: visible;
+}
+
+body {
+    background: linear-gradient(to bottom, #1f242d, #1f242d, #1a1b1f, #121212);
+    font-family: 'Exo', sans-serif;
+    margin: 0; 
+    overflow: visible; 
+    min-height: 100vh;
+}
+
+form,h2,h1,h3 {
+    color:whitesmoke;
+    margin:20px;
+}
+
+h2{
+    color:whitesmoke;
+    text-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+h5 {
+    font-weight: 100;
+    color:whitesmoke;
+    text-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+#coin-name{
+    font-weight: 400;
+}
+
+.btn {
+    color: whitesmoke;
+    margin: 1px;
+    padding: 12px 24px!important;
+    background-color:#526175;
+}
+.btn:hover {
+    background-color: #8aa3a5;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    transform: scale(1.1);
+}
+
+.form-control{
+    background-color: #ccd8d8;
+}
+
+.form-control:focus {
+    border-color: #8aa3a5;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem #8aa3a5;
+}
+
+.container{
+    background: linear-gradient(to bottom,  #252b33, #22272f,  #22272f,  #252b33);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#768497", endColorstr="#5F6F85", GradientType=1 );
+    width: 40%;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: rgb(217, 227, 237) 0px 20px 30px -10px;
+
+}
+
+#emailHelp {
+    margin-bottom: 20px;
+    color:whitesmoke;
+}
+
+/* make mobile friendly for browser windows < 600px wide */
+@media only screen and (max-width: 600px) {
+    .container {
+        width: 90%;
+        margin-top: 20px;
+        padding: 20px;
+    }
+
+    form, h2, h1, h3 {
+        margin:10px;
+    }
+
+    .btn {
+        padding: 6px 12px!important;
+    }
+}
+
+#resetPassword, a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input:invalid {
+    border-color: crimson;
+}
+
+input:valid {
+    border-color: aquamarine;
+}
+
+label {
+    display: block;
+    padding-left: 1rem;
+    &:has(+ input:user-invalid):after {
+        content: "❌";
+    }
+    &:has(+ input:user-valid):after {
+        content: "✅";
+    }
+}

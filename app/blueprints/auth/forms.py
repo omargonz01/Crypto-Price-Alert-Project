@@ -10,11 +10,11 @@ class LoginForm(FlaskForm):
     submit_btn = SubmitField('Sign In')
 
 class SignupForm(FlaskForm):
-    first_name = StringField('First Name', validators=[DataRequired()])
-    last_name = StringField('Last Name', validators=[DataRequired()])
-    email = EmailField('Email Address: ', validators=[DataRequired()])
-    password = PasswordField('Password: ', validators=[DataRequired()])
-    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
+    first_name = StringField('First Name', validators=[DataRequired()], render_kw={"required": True})
+    last_name = StringField('Last Name', validators=[DataRequired()], render_kw={"required": True})
+    email = EmailField('Email Address: ', validators=[DataRequired()], render_kw={"required": True})
+    password = PasswordField('Password: ', validators=[DataRequired()], render_kw={"required": True})
+    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')], render_kw={"required": True})
     submit_btn = SubmitField('Register')
 
 class CryptoForm(FlaskForm):
