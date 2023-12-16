@@ -34,6 +34,4 @@ app.register_blueprint(lists)
 def load_user(user_id):
     return User.query.get(user_id)
     
-    
-
 from . import models
