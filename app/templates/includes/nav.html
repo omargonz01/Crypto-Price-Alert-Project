@@ -117,43 +117,43 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function () {
-            // Toggle dropdown menus
+            
             $("#viewCategoriesDropdown, #viewAlertsDropdown, #viewProfileDropdown").click(function (event) {
                 console.log('Dropdown menu clicked');
                 event.preventDefault();
-                event.stopPropagation(); // Stop the click from closing the dropdown immediately
+                event.stopPropagation(); 
                 var $dropdownMenu = $(this).next('.dropdown-menu');
-                $('.dropdown-menu').not($dropdownMenu).addClass('d-none'); // Hide other dropdowns
-                $dropdownMenu.toggleClass('d-none'); // Toggle the clicked dropdown
+                $('.dropdown-menu').not($dropdownMenu).addClass('d-none'); 
+                $dropdownMenu.toggleClass('d-none'); 
             });
     
-            // Prevent navbar from collapsing when modal is open
+            
             $('#logoutModal').on('show.bs.modal', function (event) {
                 console.log('logout modal shown');
-                $('body').addClass('modal-open'); // Add the class that prevents scrolling
-                $('body').css('overflow', 'hidden'); // Prevent scrolling
+                $('body').addClass('modal-open'); 
+                $('body').css('overflow', 'hidden'); 
             });
     
-            // Restore scrolling when the modal is closed
+            
             $('#logoutModal').on('hidden.bs.modal', function (event) {
                 console.log('logout modal hidden');
                 $('body').removeClass('modal-open');
-                $('body').css('overflow', 'auto'); // Allow scrolling
+                $('body').css('overflow', 'auto'); 
             });
     
-            // Collapse the navbar or dropdowns when a dropdown item is clicked
+            
             $('.navbar-nav .dropdown-item').on('click', function () {
                 console.log('Dropdown item clicked');
-                // Check if the navbar-toggler is visible (mobile view)
+                
                 if ($('.navbar-toggler').is(':visible')) {
                     $('.navbar-collapse').collapse('hide');
                 } else {
-                    // Hide the open dropdown menus (desktop view)
+                    
                     $('.dropdown-menu').addClass('d-none');
                 }
             });
     
-            // Hide dropdown menus when clicking outside
+            
             $(document).click(function (event) {
                 console.log('Document clicked');
                 var clickover = $(event.target);
@@ -162,9 +162,9 @@
                     $(".navbar-toggler").click();
                 }
     
-                // Check if the click is outside the dropdown
+                
                 if (!clickover.closest('.nav-item.dropdown').length) {
-                    // Hide all dropdown menus
+                    
                     $('.dropdown-menu').addClass('d-none');
                 }
             });

@@ -18,6 +18,27 @@
     <form action="/logout" method="post">
         <input type="submit" value="Logout">
     </form>
-  </div>
+    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title fs-5" id="logoutModalLabel">Log Out Confirmation</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Attention, you are about to leave the degen zone. This is your final chance to
+                change your mind.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"
+                    data-bs-dismiss="modal">Nevermind</button>
+                <a href="{{ url_for('auth.logout') }}" class="btn btn-danger" id="no-hov">Confirm
+                    Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
 </div>
 {% endblock %}
