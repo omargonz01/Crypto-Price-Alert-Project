@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="../static/styles/nav.css">
     <title>Your Page Title</title>
 </head>
@@ -119,6 +119,7 @@
         $(document).ready(function () {
             // Toggle dropdown menus
             $("#viewCategoriesDropdown, #viewAlertsDropdown, #viewProfileDropdown").click(function (event) {
+                console.log('Dropdown menu clicked');
                 event.preventDefault();
                 event.stopPropagation(); // Stop the click from closing the dropdown immediately
                 var $dropdownMenu = $(this).next('.dropdown-menu');
@@ -126,8 +127,23 @@
                 $dropdownMenu.toggleClass('d-none'); // Toggle the clicked dropdown
             });
     
+            // Prevent navbar from collapsing when modal is open
+            $('#logoutModal').on('show.bs.modal', function (event) {
+                console.log('logout modal shown');
+                $('body').addClass('modal-open'); // Add the class that prevents scrolling
+                $('body').css('overflow', 'hidden'); // Prevent scrolling
+            });
+    
+            // Restore scrolling when the modal is closed
+            $('#logoutModal').on('hidden.bs.modal', function (event) {
+                console.log('logout modal hidden');
+                $('body').removeClass('modal-open');
+                $('body').css('overflow', 'auto'); // Allow scrolling
+            });
+    
             // Collapse the navbar or dropdowns when a dropdown item is clicked
-            $('.navbar-nav .dropdown-item').on('click', function(){
+            $('.navbar-nav .dropdown-item').on('click', function () {
+                console.log('Dropdown item clicked');
                 // Check if the navbar-toggler is visible (mobile view)
                 if ($('.navbar-toggler').is(':visible')) {
                     $('.navbar-collapse').collapse('hide');
@@ -139,6 +155,7 @@
     
             // Hide dropdown menus when clicking outside
             $(document).click(function (event) {
+                console.log('Document clicked');
                 var clickover = $(event.target);
                 var _opened = $(".navbar-collapse").hasClass("show");
                 if (_opened === true && !clickover.hasClass("navbar-toggler")) {
