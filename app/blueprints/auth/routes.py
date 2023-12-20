@@ -41,7 +41,7 @@ def login():
             return redirect(url_for('main.search'))
         else:
             flash(f'Invalid email or password combination', 'danger')
-            return redirect(url_for('login'))
+            return redirect(url_for('auth.login'))
     else:
         return render_template('login.html', form=form)  
 
