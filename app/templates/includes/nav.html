@@ -72,29 +72,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a>
-                        <!-- Modal -->
-                        <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h2 class="modal-title fs-5" id="logoutModalLabel">Log Out Confirmation</h2>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        Attention, you are about to leave the degen zone. This is your final chance to
-                                        change your mind.
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Nevermind</button>
-                                        <a href="{{ url_for('auth.logout') }}" class="btn btn-danger" id="no-hov">Confirm
-                                            Logout</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </li>
                 </ul>
                 {% else %}
@@ -113,62 +91,72 @@
             </div>
         </div>
     </nav>
+    <!-- Modal -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title fs-5" id="logoutModalLabel">Log Out Confirmation</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Attention, you are about to leave the degen zone. This is your final chance to
+                change your mind.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"
+                    data-bs-dismiss="modal">Nevermind</button>
+                <a href="{{ url_for('auth.logout') }}" class="btn btn-danger" id="no-hov">Confirm
+                    Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function () {
-            
+            // Toggle dropdown menus
             $("#viewCategoriesDropdown, #viewAlertsDropdown, #viewProfileDropdown").click(function (event) {
-                console.log('Dropdown menu clicked');
                 event.preventDefault();
-                event.stopPropagation(); 
+                event.stopPropagation(); // Stop the click from closing the dropdown immediately
                 var $dropdownMenu = $(this).next('.dropdown-menu');
-                $('.dropdown-menu').not($dropdownMenu).addClass('d-none'); 
-                $dropdownMenu.toggleClass('d-none'); 
+                $('.dropdown-menu').not($dropdownMenu).addClass('d-none'); // Hide other dropdowns
+                $dropdownMenu.toggleClass('d-none'); // Toggle the clicked dropdown
             });
-    
-            
-            $('#logoutModal').on('show.bs.modal', function (event) {
-                console.log('logout modal shown');
-                $('body').addClass('modal-open'); 
-                $('body').css('overflow', 'hidden'); 
+            // Prevent navbar from collapsing when modal is open
+            $('#logoutModal').on('shown.bs.modal', function (event) {
+                $('.navbar-collapse').collapse('hide');
             });
-    
-            
-            $('#logoutModal').on('hidden.bs.modal', function (event) {
-                console.log('logout modal hidden');
-                $('body').removeClass('modal-open');
-                $('body').css('overflow', 'auto'); 
-            });
-    
-            
-            $('.navbar-nav .dropdown-item').on('click', function () {
-                console.log('Dropdown item clicked');
-                
+            // Collapse the navbar or dropdowns when a dropdown item is clicked
+            $('.navbar-nav .dropdown-item').on('click', function(){
+                // Check if the navbar-toggler is visible (mobile view)
                 if ($('.navbar-toggler').is(':visible')) {
                     $('.navbar-collapse').collapse('hide');
                 } else {
-                    
+                    // Hide the open dropdown menus (desktop view)
                     $('.dropdown-menu').addClass('d-none');
                 }
             });
-    
-            
+        
+            // Hide dropdown menus when clicking outside
             $(document).click(function (event) {
-                console.log('Document clicked');
                 var clickover = $(event.target);
                 var _opened = $(".navbar-collapse").hasClass("show");
                 if (_opened === true && !clickover.hasClass("navbar-toggler")) {
                     $(".navbar-toggler").click();
                 }
-    
-                
+        
+                // Check if the click is outside the dropdown
                 if (!clickover.closest('.nav-item.dropdown').length) {
-                    
+                    // Hide all dropdown menus
                     $('.dropdown-menu').addClass('d-none');
                 }
             });
         });
+        
     </script>
 </body>
 
