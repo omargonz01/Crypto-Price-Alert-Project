@@ -17,7 +17,7 @@ def search():
 
         # Check if the coin input is empty
         if not coin:
-            flash('No search, no service. Don’t be shy... search any crypto!', 'danger')
+            flash('Empty search. Don’t be shy... search any crypto!', 'danger')
             return redirect(url_for('main.search'))
 
         try:
